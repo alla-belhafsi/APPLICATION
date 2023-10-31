@@ -10,7 +10,7 @@ require_once('function.php');
         <link rel="stylesheet" href="css/style.css">
         <title>Ajout produit</title>
     </head>
-    <a href="http://localhost/alla_belhafsi/AlgoPHP/APPLICATION/recap.php">Récapitulatif</a>
+    <a href="recap.php">Récapitulatif</a>
     <body class="formulaire">
         <h1>Ajouter un produit</h1>
         <p>Nombre de produits: <?php echo countProductsInSession(); ?></p>

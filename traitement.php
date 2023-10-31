@@ -7,8 +7,10 @@
 
     if(isset($_POST['submit'])) {
 
-        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
-        $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_INT);
+        // var_dump("ok");die;
+
+        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT);
         $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
         if($name && $price && $qtt && $price > 0 && $qtt > 0) {

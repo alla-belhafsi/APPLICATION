@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Récapitulatif des produits</title>
 </head>
-<a href="http://localhost/alla_belhafsi/AlgoPHP/APPLICATION/index.php">MENU</a>
+<a href="index.php">MENU</a>
 <body>
     <?php
-    if(isset($_SESSION['products']) || empty($_SESSION['products'])) {
+    if(!isset($_SESSION['products']) || empty($_SESSION['products'])) {
         echo "<p>Aucun produit en session...</p>";
     }
     else{
