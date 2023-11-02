@@ -8,12 +8,12 @@ if (isset($_POST['action']) && isset($_POST['product_index'])) {
         $product = $_SESSION['products'][$product_index];
 
         if ($_POST['action'] === 'ajouterQtt') {
-            $product['qtt']++;
+            $product['qtt']++;  // Permettre au bouton "+" d'ajouter la quantité d'un produit
         } elseif ($_POST['action'] === 'diminuerQtt' && $product['qtt'] > 0) {
-            $product['qtt']--;
+            $product['qtt']--;  // Permettre au bouton "-" de retirer la quantité d'un produit
         }
 
-        $product['total'] = $product['price'] * $product['qtt'];
+        $product['total'] = $product['price'] * $product['qtt']; // Afficher le total par rapport à la modification de la quantité du produit
         $_SESSION['products'][$product_index] = $product; // Mettez à jour le produit dans la session
     }
 }

@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 
-/* Fichier style.css */
+/*--------------RECAP--------------*/
+
 .tableRecap {
     border-collapse: collapse;
     width: 100%;
@@ -23,4 +24,18 @@
     text-align: center;
     display: flex;
     justify-content: space-between;
+}
+
+/*--------------INDEX--------------*/
+
+.buttonLink {
+    background-color: #194575;
+    color: #fff; 
+    border: 1px solid #783434;
+    padding: 10px 20px; 
+    cursor: pointer; 
+}
+
+.buttonLink:hover {
+    background-color: #0056b3;
 }

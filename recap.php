@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Récapitulatif des produits</title>
 </head>
-    <div><a href="index.php">MENU</a>
+<button class="buttonLink" onclick="window.location.href='index.php'">MENU</button>
+    <body class="formulaire">
     </div>
 <body>
     <?php
@@ -38,10 +39,10 @@
                     "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                     "<td>",
                        "<form class='qtt' method='post' action='update_quantity.php'>",
-                            "<input type='hidden' name='product_index' value='{$index}'>",
-                            "<button type='submit' name='action' value='diminuerQtt'>-</button>",
+                            "<input type='hidden' name='product_index' value='{$index}'>", 
+                            "<button type='submit' name='action' value='diminuerQtt'>-</button>", // le placement du bouton "-"
                             "<span>{$product['qtt']}</span>",
-                            "<button type='submit' name='action' value='ajouterQtt'>+</button>",
+                            "<button type='submit' name='action' value='ajouterQtt'>+</button>", // le placement du bouton "+"
                        "</form>",
                     "</td>",
                     "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
