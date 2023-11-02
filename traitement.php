@@ -39,21 +39,8 @@ if (isset($_GET['action'])) {
             
             // Message de succès
             $_SESSION['message'] = "Le panier a été vidé avec succès.";
+            
             break;
-        case "up-qtt":
-            if (isset($_SESSION['products'][$index])) {
-                    $_SESSION['products'][$index]['qtt']++;
-                    $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['qtt'] * $_SESSION['products'][$index]['price'];
-            }
-            break;
-        case "down-qtt":
-            if (isset($_SESSION['products'][$index]) && $_SESSION['products'][$index]['qtt'] > 1) {
-                $_SESSION['products'][$index]['qtt']--;
-                $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['qtt'] * $_SESSION['products'][$index]['price'];
-            }
-            break;
-    }
+        }    
 }
-
-
 header("Location: index.php"); // Redirection vers la page d'index après traitement des actions.

@@ -4,19 +4,23 @@
     box-sizing: border-box;
 }
 
-.quantity-container {
+/* Fichier style.css */
+.tableRecap {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tableRecap th, .tableRecap td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.tableRecap th {
+    background-color: #f2f2f2;
+}
+
+.qtt {
+    text-align: center;
     display: flex;
-    align-items: center;
-}
-
-.quantity-button {
-    font-size: 20px;
-    margin: 0 5px;
-    text-decoration: none;
-    color: #000;
-}
-
-.quantity-number {
-    font-size: 18px;
-    font-weight: bold;
+    justify-content: space-between;
 }

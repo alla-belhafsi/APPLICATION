@@ -19,7 +19,7 @@
     }
     else{
         echo "<p>Nombre de produits: ".countProductsInSession()."</p>"; 
-        echo "<table>",
+        echo "<table class='tableRecap'>",
                 "<thead>",
                     "<tr>",
                         "<th>#</th>",
@@ -37,11 +37,12 @@
                     "<td>" . $product['name'] . "</td>",
                     "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                     "<td>",
-                    "<div class='quantity-container'>",
-                    "<a href='traitement.php?action=down-qtt&index=$index' class='quantity-button'>&#45;</a>",
-                    "<span class='quantity-number'>" . $product['qtt'] . "</span>",
-                    "<a href='traitement.php?action=up-qtt&index=$index' class='quantity-button'>&#43;</a>",
-                    "</div>",
+                       "<form class='qtt' method='post' action='update_quantity.php'>",
+                            "<input type='hidden' name='product_index' value='{$index}'>",
+                            "<button type='submit' name='action' value='diminuerQtt'>-</button>",
+                            "<span>{$product['qtt']}</span>",
+                            "<button type='submit' name='action' value='ajouterQtt'>+</button>",
+                       "</form>",
                     "</td>",
                     "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                  "</tr>";
