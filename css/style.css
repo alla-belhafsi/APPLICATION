@@ -4,3 +4,19 @@
     box-sizing: border-box;
 }
 
+.quantity-container {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-button {
+    font-size: 20px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #000;
+}
+
+.quantity-number {
+    font-size: 18px;
+    font-weight: bold;
+}

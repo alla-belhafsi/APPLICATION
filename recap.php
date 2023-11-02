@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Récapitulatif des produits</title>
 </head>
-<a href="index.php">MENU</a>
+    <div><a href="index.php">MENU</a>
+    </div>
 <body>
     <?php
     if(!isset($_SESSION['products']) || empty($_SESSION['products'])) {
         echo "<p>Aucun produit en session...</p>";
     }
     else{
-        "<p>Nombre de produits: </p>";
-        echo countProductsInSession(); 
+        echo "<p>Nombre de produits: ".countProductsInSession()."</p>"; 
         echo "<table>",
                 "<thead>",
                     "<tr>",
@@ -33,12 +33,18 @@
         $totalGeneral = 0;
         foreach($_SESSION['products'] as $index => $product) {
             echo "<tr>",
-                    "<td>".$index."</td>",
-                    "<td>".$product['name']."</td>",
-                    "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                    "<td>".$product['qtt']."</td>",
-                    "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                "</tr>";
+                    "<td>" . $index . "</td>",
+                    "<td>" . $product['name'] . "</td>",
+                    "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
+                    "<td>",
+                    "<div class='quantity-container'>",
+                    "<a href='traitement.php?action=down-qtt&index=$index' class='quantity-button'>&#45;</a>",
+                    "<span class='quantity-number'>" . $product['qtt'] . "</span>",
+                    "<a href='traitement.php?action=up-qtt&index=$index' class='quantity-button'>&#43;</a>",
+                    "</div>",
+                    "</td>",
+                    "<td>" . number_format($product['total'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
+                 "</tr>";
             $totalGeneral+= $product['total'];
         }
         echo "<tr>",

@@ -13,8 +13,14 @@ require_once('function.php');
     <a href="recap.php">Récapitulatif</a>
     <body class="formulaire">
         <h1>Ajouter un produit</h1>
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo "<p>" . $_SESSION['message'] . "</p>";
+            unset($_SESSION['message']); // Supprimer le message de la session
+        }
+        ?>
         <p>Nombre de produits: <?php echo countProductsInSession(); ?></p>
-        <form action="traitement.php" method="post"> 
+        <form action="traitement.php" method="get"> 
             <p>
                 <label>
                     Nom du produit :
@@ -33,9 +39,8 @@ require_once('function.php');
                     <input type="number" name="qtt" value="1">
                 </label>
             </p>
-            <p>
-                <input type="submit" name="submit" value="Ajouter le produit">
-            </p>
+            <input type="submit" name="action" value="Ajouter au panier">
+            <input type="submit" name="action" value="Vider le panier">
         </form>
     </body>
 </html>
