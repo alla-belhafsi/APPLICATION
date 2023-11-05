@@ -6,16 +6,20 @@ if (!isset($_SESSION['products'])) {
     $_SESSION['products'] = array(); // Initialise la session 'products' comme un tableau
 }
 
+
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
-        case "Ajouter au panier":
+        case "add":
             // Récupérez les valeurs de name, price, et qtt depuis les paramètres GET
-            $name = filter_input(INPUT_GET, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $price = filter_input(INPUT_GET, "price", FILTER_VALIDATE_FLOAT);
-            $qtt = filter_input(INPUT_GET, "qtt", FILTER_VALIDATE_INT);
+            $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT);
+            $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
             // Utilisez les mêmes conditions pour vérifier les valeurs
-            if ($name && $price && $qtt && $price > 0 && $qtt > 0) {
+            // var_dump($name);
+            // var_dump($price);
+            // var_dump($qtt);die;
+            if ($name && $price && $qtt && $price >0 && $qtt >0) {
                 $product = [
                     "name" => $name,
                     "price" => $price,
@@ -33,14 +37,40 @@ if (isset($_GET['action'])) {
                 $_SESSION['message'] = "Veuillez vérifier les données du produit.";
             }
             break;
-        case "Vider le panier":
+        case "delete":
+            // Code pour supprimer le produit
+            if (isset($_GET["id"])) {
+                $productIndex = $_GET["id"];
+                if (isset($_SESSION["products"][$productIndex])) {
+                    unset($_SESSION["products"][$productIndex]);
+                
+            // Message de succès
+            $_SESSION['message'] = "Le produit a été supprimer avec succès.";}}
+            header("Location: recap.php"); die;
+            break;
+
+        case "clear":
             // Code pour vider le panier
             unset($_SESSION['products']);
             
             // Message de succès
             $_SESSION['message'] = "Le panier a été vidé avec succès.";
-            
+            header("Location: recap.php"); die;
             break;
-        }    
+
+        case "up-qty":
+            $_SESSION["products"][$_GET["id"]]["qtt"]++;
+            header("Location: recap.php"); die;
+            break;
+            
+        case "down-qty":
+            if($_SESSION["products"][$_GET["id"]]["qtt"] >1){
+                $_SESSION["products"][$_GET["id"]]["qtt"]--;}
+            if($_SESSION["products"][$_GET["id"]]["qtt"] ==1){
+                $_SESSION['message'] = "<b>La quantité minimale est atteinte.<br>Pour supprimer un produit, veuillez utiliser l'option 'Supprimer' dans la colonne Actions</b>";
+            }
+            header("Location: recap.php"); die;
+            break;
+        }
 }
 header("Location: index.php"); // Redirection vers la page d'index après traitement des actions.

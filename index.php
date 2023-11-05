@@ -20,27 +20,30 @@ require_once('function.php');
         }
         ?>
         <p>Nombre de produits: <?php echo countProductsInSession(); ?></p><br>
-        <form action="traitement.php" method="get"> 
-            <p>
-                <label>
-                    Nom du produit :
-                    <input type="text" name="name">
-                </label>
-            </p><br>
-            <p>
-                <label>
-                    Prix du produit :
-                    <input type="text" name="price">
-                </label>
-            </p><br>
-            <p>
-                <label>
-                    Quantité désirée :
-                    <input type="number" name="qtt" value="1">
-                </label>
-            </p><br>
-            <input type="submit" name="action" value="Ajouter au panier">
-            <input type="submit" name="action" value="Vider le panier">
-        </form>
-    </body>
+        <form action="traitement.php?action=add" method="POST">
+        <input type="hidden" name="action" value="add">
+        <p>
+            <label>
+                Nom du produit :
+                <input type="text" name="name">
+            </label>
+        </p><br>
+        <p>
+            <label>
+                Prix du produit :
+                <input type="text" name="price">
+            </label>
+        </p><br>
+        <p>
+            <label>
+                Quantité désirée :
+                <input type="number" name="qtt" value="1">
+            </label>
+        </p><br>
+        <button type="submit">Ajouter au panier</button>
+    </form>
+    <form action="traitement.php?action=clear" method="POST">
+        <button type="submit">Vider le panier</button>
+    </form>
+</body>
 </html>
