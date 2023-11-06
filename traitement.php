@@ -16,9 +16,9 @@ if (isset($_GET['action'])) {
             $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
             // Utilisez les mêmes conditions pour vérifier les valeurs
-            // var_dump($name);
-            // var_dump($price);
-            // var_dump($qtt);die;
+             //var_dump($name);
+             //var_dump($price);
+             //var_dump($qtt);die;
             if ($name && $price && $qtt && $price >0 && $qtt >0) {
                 $product = [
                     "name" => $name,
@@ -68,6 +68,8 @@ if (isset($_GET['action'])) {
                 $_SESSION["products"][$_GET["id"]]["qtt"]--;}
             if($_SESSION["products"][$_GET["id"]]["qtt"] ==1){
                 $_SESSION['message'] = "<b>La quantité minimale est atteinte.<br>Pour supprimer un produit, veuillez utiliser l'option 'Supprimer' dans la colonne Actions</b>";
+                // Message de succès
+            $_SESSION['message'] = "Le produit a été supprimer avec succès.";
             }
             header("Location: recap.php"); die;
             break;

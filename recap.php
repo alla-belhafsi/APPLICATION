@@ -10,20 +10,24 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Récapitulatif des produits</title>
 </head>
-<button class="buttonLink" onclick="window.location.href='index.php'">MENU</button>
-    <body class="formulaire">
-    </div>
-<body>
+<button class="buttonLink" onclick="window.location.href='index.php'">MENU</button><br><br>
+    <body class="recap">
+    <?php
+    if (isset($_SESSION['message'])) {
+        echo "<p class='message'>" . $_SESSION['message'] . "</p>";
+        unset($_SESSION['message']); // Supprimer le message de la session
+    }
+    ?>
     <?php
     if(!isset($_SESSION['products']) || empty($_SESSION['products'])) {
-        echo "<p>Aucun produit en session...</p>";
+        echo "<p class='message'>Aucun produit en session...</p>";
     }
     else{
-        if (isset($_SESSION['message'])) {
+        if (isset($_SESSION['messaget'])) {
             echo "<p>" . $_SESSION['message'] . "</p>";
             unset($_SESSION['message']); // Supprimer le message de la session
         }
-        echo "<p>Nombre de produits: ".countProductsInSession()."</p>"; 
+        echo "<br><p class='nbProduit'>Nombre de produits: ".countProductsInSession()."</p><br><br>"; 
         echo "<table class='tableRecap'>",
                 "<thead>",
                     "<tr>",
@@ -46,13 +50,16 @@
                     "<td>" . number_format($product['price'], 2, ",", "&nbsp;") . "&nbsp;€</td>",
                     "<td>",
                         "<div class='qtt' method='post'>",
-                            "<a href='traitement.php?action=down-qty&id=$index'>-</a>",// le placement du bouton "-"
+                            "<a href='traitement.php?action=down-qty&id=$index'><b>-</b></a>",// le placement du bouton "-"
                             "<span>{$product['qtt']}</span>",
-                            "<a href='traitement.php?action=up-qty&id=$index'>+</a>", // le placement du bouton "+"
+                            "<a href='traitement.php?action=up-qty&id=$index'><b>+</b></a>", // le placement du bouton "+"
                         "</div>",
                     "</td>",
                     "<td>" . number_format($product['total'] = $product["price"]*$product["qtt"], 2, ",", "&nbsp;") . "&nbsp;€</td>",
-                    "<td>", "<a href='traitement.php?action=delete&id=$index'>Supprimer le produit</a>",
+                    "<td class='actions'>",
+                        "<div class='poubelle'>", 
+                            "<a href='traitement.php?action=delete&id=$index'><b>&#x1F5D1</b></a>",
+                        "</div>",
                     "</td>",
                  "</tr>";
             
@@ -60,13 +67,23 @@
         }
         echo "<tr>",
                 "<td colspan=4>Total général : </td>",
-                "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€</strong></td>",
+                "<td colspan=2><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€</strong></td>",
              "</tr>",
             "</tbody>",
             "</table>";
     } 
     ?>
 </body>
-<a href="traitement.php?action=clear">Vider le panier</a>
-<a href="traitement.php?action=add">Ajouter au panier</a>
+<form action='index.php' method='POST'>
+    <div class='panier'>
+        <div class='apanier'>
+            <input type="submit" name="submit" value="Ajouter au panier">
+        </div>
+        </form>
+        <form action='traitement.php?action=clear' method='POST'>
+        <div class='vpanier'>  
+            <input  type='submit' name='submit' value='Vider le panier'><br>
+        </div>
+    </div>
+</form>       
 </html>

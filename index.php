@@ -15,35 +15,41 @@ require_once('function.php');
         <h1>Ajouter un produit</h1><br>
         <?php
         if (isset($_SESSION['message'])) {
-            echo "<p>" . $_SESSION['message'] . "</p>";
+            echo "<p class='message'>" . $_SESSION['message'] . "</p>";
             unset($_SESSION['message']); // Supprimer le message de la session
         }
         ?>
-        <p>Nombre de produits: <?php echo countProductsInSession(); ?></p><br>
-        <form action="traitement.php?action=add" method="POST">
-        <input type="hidden" name="action" value="add">
-        <p>
-            <label>
-                Nom du produit :
-                <input type="text" name="name">
-            </label>
-        </p><br>
-        <p>
-            <label>
-                Prix du produit :
-                <input type="text" name="price">
-            </label>
-        </p><br>
-        <p>
-            <label>
-                Quantité désirée :
-                <input type="number" name="qtt" value="1">
-            </label>
-        </p><br>
-        <button type="submit">Ajouter au panier</button>
-    </form>
-    <form action="traitement.php?action=clear" method="POST">
-        <button type="submit">Vider le panier</button>
-    </form>
-</body>
+        <br><a class='nbProduit' href='recap.php'>Nombre de produits : <?php echo countProductsInSession(); ?></a><br>
+        <form action='traitement.php?action=add' method='POST'>
+            <p class='form'>
+                <label>
+                    Nom du produit :
+                    <input type="text" name="name">
+                </label>
+            </p><br>
+            <p class='form'>
+                <label>
+                    Prix du produit :
+                    <input type="float" name="price" min="1">
+                </label>
+            </p><br>
+            <p class='form'>
+                <label>
+                    Quantité désirée :
+                    <input type="number" value="1" name="qtt" min="1"  >
+                </label>
+            </p><br>
+            <div class='panier'>
+                <div class='apanier'>
+                    <input type="submit" name="submit" value="Ajouter au panier">
+                </div>
+                </form>
+                <form action='traitement.php?action=clear' method='POST'>
+                <div class='vpanier'>  
+                    <input  type='submit' name='submit' value='Vider le panier'><br>
+                </div>
+            </div>
+        </form>    
+        <br>
+    </body>
 </html>
