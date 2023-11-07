@@ -1,5 +1,6 @@
 <?php
     session_start();
+    ob_start();
     require_once('function.php');
 ?>
 <!DOCTYPE html>
@@ -87,3 +88,8 @@
     </div>
 </form>       
 </html>
+<?php
+
+$content = ob_get_clean();
+
+require_once "template.php";?>
