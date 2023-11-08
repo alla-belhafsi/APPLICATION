@@ -1,25 +1,15 @@
 <?php
     session_start();
-    ob_start();
+    
     require_once('function.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Récapitulatif des produits</title>
-</head>
 <button class="buttonLink" onclick="window.location.href='index.php'">MENU</button><br><br>
     <body class="recap">
+    
     <?php
-    if (isset($_SESSION['message'])) {
-        echo "<p class='message'>" . $_SESSION['message'] . "</p>";
-        unset($_SESSION['message']); // Supprimer le message de la session
-    }
-    ?>
-    <?php
+    ob_start();
     if(!isset($_SESSION['products']) || empty($_SESSION['products'])) {
         echo "<p class='message'>Aucun produit en session...</p>";
     }
@@ -74,20 +64,7 @@
             "</table>";
     } 
     ?>
-</body>
-<form action='index.php' method='POST'>
-    <div class='panier'>
-        <div class='apanier'>
-            <input type="submit" name="submit" value="Ajouter au panier">
-        </div>
-        </form>
-        <form action='traitement.php?action=clear' method='POST'>
-        <div class='vpanier'>  
-            <input  type='submit' name='submit' value='Vider le panier'><br>
-        </div>
-    </div>
-</form>       
-</html>
+
 <?php
 
 $content = ob_get_clean();

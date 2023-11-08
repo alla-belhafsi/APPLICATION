@@ -60,17 +60,23 @@ if (isset($_GET['action'])) {
 
         case "up-qty":
             $_SESSION["products"][$_GET["id"]]["qtt"]++;
+
+            // Message de succés
+            $_SESSION['message'] = "La quantité a été augmenter avec succès.";
             header("Location: recap.php"); die;
             break;
             
         case "down-qty":
             if($_SESSION["products"][$_GET["id"]]["qtt"] >1){
                 $_SESSION["products"][$_GET["id"]]["qtt"]--;}
+
+                // Message de succés
+                $_SESSION['message'] = "La quantité a été diminuer avec succès.";
+
             if($_SESSION["products"][$_GET["id"]]["qtt"] ==1){
-                $_SESSION['message'] = "<b>La quantité minimale est atteinte.<br>Pour supprimer un produit, veuillez utiliser l'option 'Supprimer' dans la colonne Actions</b>";
-                // Message de succès
-            $_SESSION['message'] = "Le produit a été supprimer avec succès.";
-            }
+
+                // Message d'averissement
+                $_SESSION['message'] = "<b>La quantité minimale est atteinte.<br>Pour supprimer un produit, veuillez utiliser l'option 'Supprimer' dans la colonne Actions</b>";}
             header("Location: recap.php"); die;
             break;
         }
