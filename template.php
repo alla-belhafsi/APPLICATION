@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <title>Ajout produit</title>
+    <title>Application</title>
 </head>
 <header>
         <?php

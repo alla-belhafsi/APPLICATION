@@ -14,9 +14,9 @@
         echo "<p class='message'>Aucun produit en session...</p>";
     }
     else{
-        if (isset($_SESSION['messaget'])) {
+        if (isset($_SESSION['message'])) {
             echo "<p>" . $_SESSION['message'] . "</p>";
-            unset($_SESSION['message']); // Supprimer le message de la session
+            unset($_SESSION['message']);
         }
         echo "<br><p class='nbProduit'>Nombre de produits: ".countProductsInSession()."</p><br><br>"; 
         echo "<table class='tableRecap'>",
